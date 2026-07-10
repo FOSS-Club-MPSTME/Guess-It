@@ -1,16 +1,53 @@
-# React + Vite
+# 🎮 Guess It!
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+## 📖 Description
 
-Currently, two official plugins are available:
+**Guess It!** is a React-based quiz game that brings together multiple guessing games in a single application. Users can choose from different categories such as logos, countries, football clubs, and social media apps from the home screen and navigate to the game they want to play.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## ⚙️ How It Works
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* The user lands on the home page.
+* Four game categories are displayed as interactive cards.
+* Clicking **Enter Game** on any card navigates the user to that game's route.
+* Each game is designed to have its own dedicated page and gameplay while sharing the same application.
 
-## Expanding the Oxlint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## 📄 Routes
+
+| Route           | Description                                           |
+| --------------- | ----------------------------------------------------- |
+| `/`             | Landing page displaying all available guessing games. |
+| `/logo-guesser` | Guess the Logo game.                                  |
+| `/flag-guesser` | Guess the Country game.                               |
+| `/club-guesser` | Guess the Football Club game.                         |
+| `/ui-guesser`   | Guess the App game.                                   |
+
+---
+
+## 🛠️ Tech Stack
+
+* React
+* Vite
+* React Router DOM
+* CSS
+* Lucide React
+
+---
+
+## ▶️ Run Locally
+
+Install dependencies and start the development server:
+
+```bash
+npm install
+npm run dev
+```
+
+Open your browser and visit:
+
+```text
+http://localhost:5173
+```
