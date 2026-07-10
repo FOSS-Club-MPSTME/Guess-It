@@ -1,0 +1,369 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;600&family=Luckiest+Guy&display=swap");
+
+.logo-guesser-page {
+  --bg: #0b1330;
+  --card-bg: #131c46;
+  --accent: #4c7dff;
+  --accent-light: #7ea2ff;
+  --text: #eaf0ff;
+  --muted: #8a93bf;
+  --green: #33d17a;
+  --green-bg: rgba(51, 209, 122, 0.18);
+  --red: #ff5c6c;
+  --red-bg: rgba(255, 92, 108, 0.18);
+
+  box-sizing: border-box;
+  min-height: 100vh;
+  width: 100%;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  font-family: "Inter", sans-serif;
+}
+
+.logo-guesser-page * {
+  box-sizing: border-box;
+}
+
+/* ---------- Name entry ---------- */
+
+.name-entry-card {
+  background: var(--card-bg);
+  border-radius: 24px;
+  padding: 48px 40px;
+  max-width: 440px;
+  width: 100%;
+  text-align: center;
+}
+
+.name-entry-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-light);
+  filter: drop-shadow(0 0 10px rgba(126, 162, 255, 0.65));
+  margin-bottom: 12px;
+}
+
+.name-entry-title {
+  font-family: "Luckiest Guy", "Space Grotesk", cursive;
+  font-weight: 400;
+  font-size: 2.4rem;
+  margin: 0 0 12px;
+  text-shadow: 2px 2px 0 var(--accent);
+}
+
+.name-entry-subtitle {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin: 0 0 28px;
+  line-height: 1.5;
+}
+
+.name-entry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.name-entry-input {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 2px solid rgba(126, 162, 255, 0.25);
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.name-entry-input:focus {
+  border-color: var(--accent);
+}
+
+.name-entry-btn {
+  width: 100%;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text);
+  background: var(--accent);
+  border: none;
+  border-radius: 999px;
+  padding: 14px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+.name-entry-btn:hover:not(:disabled) {
+  background: var(--accent-light);
+}
+
+.name-entry-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ---------- Game screen ---------- */
+
+.game-wrap {
+  max-width: 560px;
+  width: 100%;
+}
+
+.game-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.game-progress {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.game-timer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  background: var(--card-bg);
+  padding: 6px 14px;
+  border-radius: 999px;
+  color: var(--accent-light);
+}
+
+.game-timer-danger {
+  color: var(--red);
+  animation: timer-pulse 1s ease-in-out infinite;
+}
+
+@keyframes timer-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+.game-progress-track {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.game-progress-dot {
+  flex: 1;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--card-bg);
+  transition: background 0.15s ease;
+}
+
+.game-progress-dot.is-current {
+  background: var(--accent-light);
+}
+
+.game-progress-dot.is-correct {
+  background: var(--green);
+}
+
+.game-progress-dot.is-wrong {
+  background: var(--red);
+}
+
+.game-progress-dot.is-skipped {
+  background: var(--muted);
+}
+
+.question-photo-frame {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: var(--card-bg);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.question-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 24px;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.option-btn {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text);
+  background: var(--card-bg);
+  border: 2px solid transparent;
+  border-radius: 14px;
+  padding: 16px 12px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.1s ease;
+}
+
+.option-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.option-btn:disabled {
+  cursor: not-allowed;
+}
+
+.option-btn.option-correct {
+  background: var(--green-bg);
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.option-btn.option-wrong {
+  background: var(--red-bg);
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.game-nav {
+  display: flex;
+  gap: 12px;
+}
+
+.game-nav-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text);
+  background: var(--card-bg);
+  border: none;
+  border-radius: 999px;
+  padding: 12px 0;
+  cursor: pointer;
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+.game-nav-btn:hover:not(:disabled) {
+  background: rgba(126, 162, 255, 0.15);
+}
+
+.game-nav-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.game-nav-btn-primary {
+  background: var(--accent);
+}
+
+.game-nav-btn-primary:hover:not(:disabled) {
+  background: var(--accent-light);
+}
+
+/* ---------- Results screen ---------- */
+
+.results-card {
+  background: var(--card-bg);
+  border-radius: 24px;
+  padding: 48px 40px;
+  max-width: 440px;
+  width: 100%;
+  text-align: center;
+}
+
+.results-title {
+  font-family: "Luckiest Guy", "Space Grotesk", cursive;
+  font-weight: 400;
+  font-size: 2.4rem;
+  margin: 0 0 8px;
+  text-shadow: 2px 2px 0 var(--accent);
+}
+
+.results-player {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin: 0 0 28px;
+}
+
+.results-stats {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.results-stat {
+  flex: 1;
+  background: var(--bg);
+  border-radius: 14px;
+  padding: 16px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.results-stat-value {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+
+.results-stat-correct .results-stat-value { color: var(--green); }
+.results-stat-wrong .results-stat-value { color: var(--red); }
+.results-stat-skipped .results-stat-value { color: var(--muted); }
+
+.results-stat-label {
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.results-btn {
+  width: 100%;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text);
+  background: var(--accent);
+  border: none;
+  border-radius: 999px;
+  padding: 14px 0;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.results-btn:hover {
+  background: var(--accent-light);
+}
+
+@media (max-width: 480px) {
+  .options-grid {
+    grid-template-columns: 1fr;
+  }
+}

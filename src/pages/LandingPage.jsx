@@ -2,10 +2,10 @@ import { useNavigate } from "react-router-dom";
 import { Sparkles, ArrowRight } from "lucide-react";
 import "./LandingPage.css";
 
-import logoGuesserImg from "/photos/logo-guesser.png";
-import flagGuesserImg from "/photos/flag-guesser.png";
-import clubGuesserImg from "/photos/club-guesser.png";
-import uiGuesserImg from "/photos/ui-guesser.png";
+import logoGuesserImg from "/photos/game-logos/logo-guesser.png";
+import flagGuesserImg from "/photos/game-logos/flag-guesser.png";
+import clubGuesserImg from "/photos/game-logos/club-guesser.png";
+import uiGuesserImg from "/photos/game-logos/ui-guesser.png";
 
 const GAMES = [
   {
