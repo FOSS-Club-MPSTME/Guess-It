@@ -1,0 +1,645 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;600&family=Luckiest+Guy&display=swap");
+
+.flag-guesser-page {
+  --bg: #0b1330;
+  --card-bg: #131c46;
+  --accent: #4c7dff;
+  --accent-light: #7ea2ff;
+  --text: #eaf0ff;
+  --muted: #8a93bf;
+  --green: #33d17a;
+  --green-bg: rgba(51, 209, 122, 0.18);
+  --red: #ff5c6c;
+  --red-bg: rgba(255, 92, 108, 0.18);
+
+  position: relative;
+  box-sizing: border-box;
+  min-height: 100vh;
+  width: 100%;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  font-family: "Inter", sans-serif;
+  overflow: hidden;
+}
+
+.flag-guesser-page * {
+  box-sizing: border-box;
+}
+
+/* ---------- Marquee background ---------- */
+
+.flag-marquee-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.flag-marquee-row {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  transform: rotate(-4deg);
+}
+
+.flag-marquee-row.flag-marquee-left {
+  animation: flag-marquee-scroll-left 26s linear infinite;
+}
+
+.flag-marquee-row.flag-marquee-right {
+  animation: flag-marquee-scroll-right 26s linear infinite;
+}
+
+.flag-marquee-track {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.flag-marquee-text {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  color: var(--accent-light);
+  opacity: 0.08;
+  padding: 0 28px;
+  letter-spacing: 0.02em;
+}
+
+@keyframes flag-marquee-scroll-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes flag-marquee-scroll-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+/* ---------- Home back button ---------- */
+
+.flag-home-back-btn {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  color: var(--text);
+  background: var(--card-bg);
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  cursor: pointer;
+  animation: flag-home-btn-wiggle 3.2s ease-in-out infinite;
+  transition: transform 0.2s ease, background 0.15s ease, border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.flag-home-back-btn svg {
+  filter: drop-shadow(0 0 6px rgba(126, 162, 255, 0.5));
+}
+
+.flag-home-back-btn:hover {
+  animation-play-state: paused;
+  transform: rotate(0deg) scale(1.12) translateY(-3px);
+  background: var(--accent);
+  border-color: var(--accent-light);
+  box-shadow: 0 8px 20px rgba(76, 125, 255, 0.45);
+}
+
+.flag-home-back-btn:active {
+  transform: rotate(-4deg) scale(0.92);
+}
+
+@keyframes flag-home-btn-wiggle {
+  0%, 100% { transform: rotate(-8deg); }
+  50% { transform: rotate(4deg); }
+}
+
+@media (max-width: 480px) {
+  .flag-home-back-btn {
+    top: 16px;
+    left: 16px;
+    width: 42px;
+    height: 42px;
+  }
+}
+
+/* ---------- Name entry ---------- */
+
+.flag-name-entry-card {
+  position: relative;
+  z-index: 1;
+  background: var(--card-bg);
+  border-radius: 24px;
+  padding: 48px 40px;
+  max-width: 440px;
+  width: 100%;
+  text-align: center;
+}
+
+.flag-name-entry-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-light);
+  filter: drop-shadow(0 0 10px rgba(126, 162, 255, 0.65));
+  margin-bottom: 12px;
+}
+
+.flag-name-entry-title {
+  font-family: "Luckiest Guy", "Space Grotesk", cursive;
+  font-weight: 400;
+  font-size: 2.4rem;
+  margin: 0 0 12px;
+  text-shadow: 2px 2px 0 var(--accent);
+}
+
+.flag-name-entry-subtitle {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin: 0 0 28px;
+  line-height: 1.5;
+}
+
+.flag-name-entry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.flag-name-entry-input {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 2px solid rgba(126, 162, 255, 0.25);
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.flag-name-entry-input:focus {
+  border-color: var(--accent);
+}
+
+.flag-name-entry-btn {
+  width: 100%;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text);
+  background: var(--accent);
+  border: none;
+  border-radius: 999px;
+  padding: 14px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+.flag-name-entry-btn:hover:not(:disabled) {
+  background: var(--accent-light);
+}
+
+.flag-name-entry-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ---------- Game screen (split layout) ---------- */
+
+.flag-game-wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 920px;
+  width: 100%;
+}
+
+.flag-game-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.flag-game-progress {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.flag-game-timer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  background: var(--card-bg);
+  padding: 6px 14px;
+  border-radius: 999px;
+  color: var(--accent-light);
+}
+
+.flag-game-timer-danger {
+  color: var(--red);
+  animation: flag-timer-pulse 1s ease-in-out infinite;
+}
+
+@keyframes flag-timer-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+.flag-game-progress-track {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+
+.flag-game-progress-dot {
+  flex: 1;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--card-bg);
+  transition: background 0.15s ease;
+}
+
+.flag-game-progress-dot.is-current { background: var(--accent-light); }
+.flag-game-progress-dot.is-correct { background: var(--green); }
+.flag-game-progress-dot.is-wrong { background: var(--red); }
+.flag-game-progress-dot.is-skipped { background: var(--muted); }
+
+/* ---- Split row: flag card left, options+nav right ---- */
+
+.flag-game-row {
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
+}
+
+.flag-photo-frame {
+  flex: 0 0 380px;
+  width: 380px;
+  background: var(--card-bg);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flag-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 28px;
+}
+
+.flag-panel {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.flag-options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.flag-option-btn {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text);
+  background: var(--card-bg);
+  border: 2px solid transparent;
+  border-radius: 14px;
+  padding: 20px 14px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.1s ease;
+}
+
+.flag-option-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.flag-option-btn:disabled {
+  cursor: not-allowed;
+}
+
+.flag-option-btn.flag-option-correct {
+  background: var(--green-bg);
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.flag-option-btn.flag-option-wrong {
+  background: var(--red-bg);
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.flag-game-nav {
+  display: flex;
+  gap: 12px;
+}
+
+.flag-game-nav-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text);
+  background: var(--card-bg);
+  border: none;
+  border-radius: 999px;
+  padding: 12px 0;
+  cursor: pointer;
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+.flag-game-nav-btn:hover:not(:disabled) {
+  background: rgba(126, 162, 255, 0.15);
+}
+
+.flag-game-nav-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.flag-game-nav-btn-primary {
+  background: var(--accent);
+}
+
+.flag-game-nav-btn-primary:hover:not(:disabled) {
+  background: var(--accent-light);
+}
+
+/* ---------- Results screen: two-card layout ---------- */
+
+.flag-results-wrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  max-width: 920px;
+  width: 100%;
+}
+
+.flag-results-card {
+  background: var(--card-bg);
+  border-radius: 24px;
+  padding: 40px 32px;
+  flex: 0 0 380px;
+  width: 380px;
+  text-align: center;
+}
+
+.flag-results-title {
+  font-family: "Luckiest Guy", "Space Grotesk", cursive;
+  font-weight: 400;
+  font-size: 2.4rem;
+  margin: 0 0 8px;
+  text-shadow: 2px 2px 0 var(--accent);
+}
+
+.flag-results-player {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin: 0 0 28px;
+}
+
+.flag-results-stats {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.flag-results-stat {
+  flex: 1;
+  background: var(--bg);
+  border-radius: 14px;
+  padding: 16px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.flag-results-stat-value {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+
+.flag-results-stat-correct .flag-results-stat-value { color: var(--green); }
+.flag-results-stat-wrong .flag-results-stat-value { color: var(--red); }
+.flag-results-stat-skipped .flag-results-stat-value { color: var(--muted); }
+
+.flag-results-stat-label {
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.flag-results-score {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 0 24px;
+}
+
+.flag-results-score-value {
+  font-family: "Luckiest Guy", "Space Grotesk", cursive;
+  font-weight: 400;
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--accent-light);
+  text-shadow: 2px 2px 0 var(--accent);
+}
+
+.flag-results-score-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.flag-results-time {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.flag-results-time strong {
+  color: var(--text);
+}
+
+/* ---------- Leaderboard (right card) ---------- */
+
+.flag-leaderboard-card {
+  background: var(--bg);
+  border-radius: 24px;
+  padding: 28px 24px;
+  text-align: left;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.flag-leaderboard-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin: 0 0 18px;
+  color: var(--accent-light);
+}
+
+.flag-leaderboard-header-row {
+  display: grid;
+  grid-template-columns: 32px 1fr 64px 64px;
+  gap: 8px;
+  padding: 0 10px 10px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  border-bottom: 1px solid rgba(126, 162, 255, 0.15);
+}
+
+.flag-leaderboard-list {
+  display: flex;
+  flex-direction: column;
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.flag-leaderboard-row {
+  display: grid;
+  grid-template-columns: 32px 1fr 64px 64px;
+  gap: 8px;
+  align-items: center;
+  padding: 12px 10px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+
+.flag-leaderboard-row.is-you {
+  background: rgba(76, 125, 255, 0.16);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+.flag-leaderboard-rank {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.flag-leaderboard-name {
+  font-weight: 600;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.flag-leaderboard-score {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  color: var(--accent-light);
+}
+
+.flag-leaderboard-time {
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+
+.flag-results-btn {
+  width: 100%;
+  margin-top: 28px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text);
+  background: var(--accent);
+  border: none;
+  border-radius: 999px;
+  padding: 14px 0;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.flag-results-btn:hover {
+  background: var(--accent-light);
+}
+
+@media (max-width: 860px) {
+  .flag-game-row {
+    flex-direction: column;
+  }
+
+  .flag-photo-frame {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+  }
+
+  .flag-results-wrap {
+    flex-direction: column;
+  }
+
+  .flag-results-card,
+  .flag-leaderboard-card {
+    width: 100%;
+    flex: 1 1 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .flag-options-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .flag-results-card,
+  .flag-leaderboard-card {
+    padding: 28px 20px;
+  }
+
+  .flag-leaderboard-header-row,
+  .flag-leaderboard-row {
+    grid-template-columns: 24px 1fr 50px 50px;
+    font-size: 0.8rem;
+  }
+}
