@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, ArrowRight, Timer, Shield, Trophy } from "lucide-react";
+import { ArrowLeft, ArrowRight, Timer, Shield, Trophy, RotateCcw } from "lucide-react";
 import "./ClubGuesser.css";
 import { CLUB_QUESTIONS } from "../data/clubData";
 
@@ -250,6 +250,16 @@ export default function ClubGuesser() {
     });
   }, [phase, timeLeft, playerName, correctCount, wrongCount, skippedCount]);
 
+  // ---------- Reset leaderboard ----------
+  const handleResetLeaderboard = () => {
+    if (!window.confirm("Reset the leaderboard? This will remove all entries and cannot be undone.")) {
+      return;
+    }
+    setLeaderboard([]);
+    saveLeaderboard([]);
+    setLastEntryId(null);
+  };
+
   const minutes = String(Math.floor(timeLeft / 60)).padStart(2, "0");
   const seconds = String(timeLeft % 60).padStart(2, "0");
 
@@ -334,10 +344,20 @@ export default function ClubGuesser() {
 
           {/* ---- Right card: leaderboard ---- */}
           <div className="club-leaderboard-card">
-            <h2 className="club-leaderboard-title">
-              <Trophy size={18} strokeWidth={2.4} />
-              Leaderboard
-            </h2>
+            <div className="club-leaderboard-header">
+              <h2 className="club-leaderboard-title">
+                <Trophy size={18} strokeWidth={2.4} />
+                Leaderboard
+              </h2>
+              <button
+                className="club-leaderboard-reset-btn"
+                onClick={handleResetLeaderboard}
+                title="Clear all leaderboard entries"
+              >
+                <RotateCcw size={14} strokeWidth={2.4} />
+                Reset
+              </button>
+            </div>
 
             <div className="club-leaderboard-header-row">
               <span>#</span>

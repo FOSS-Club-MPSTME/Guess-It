@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, ArrowRight, Timer, Sparkles, Trophy } from "lucide-react";
+import { ArrowLeft, ArrowRight, Timer, Sparkles, Trophy, RotateCcw } from "lucide-react";
 import "./LogoGuesser.css";
 import { LOGO_QUESTIONS } from "../data/logoData";
 
@@ -250,6 +250,16 @@ export default function LogoGuesser() {
     });
   }, [phase, timeLeft, playerName, correctCount, wrongCount, skippedCount]);
 
+  // ---------- Reset leaderboard ----------
+  const handleResetLeaderboard = () => {
+    if (!window.confirm("Reset the leaderboard? This will remove all entries and cannot be undone.")) {
+      return;
+    }
+    setLeaderboard([]);
+    saveLeaderboard([]);
+    setLastEntryId(null);
+  };
+
   const minutes = String(Math.floor(timeLeft / 60)).padStart(2, "0");
   const seconds = String(timeLeft % 60).padStart(2, "0");
 
@@ -334,10 +344,20 @@ export default function LogoGuesser() {
 
           {/* ---- Right card: leaderboard ---- */}
           <div className="leaderboard-card">
-            <h2 className="leaderboard-title">
-              <Trophy size={18} strokeWidth={2.4} />
-              Leaderboard
-            </h2>
+            <div className="leaderboard-header">
+              <h2 className="leaderboard-title">
+                <Trophy size={18} strokeWidth={2.4} />
+                Leaderboard
+              </h2>
+              <button
+                className="leaderboard-reset-btn"
+                onClick={handleResetLeaderboard}
+                title="Clear all leaderboard entries"
+              >
+                <RotateCcw size={14} strokeWidth={2.4} />
+                Reset
+              </button>
+            </div>
 
             <div className="leaderboard-header-row">
               <span>#</span>

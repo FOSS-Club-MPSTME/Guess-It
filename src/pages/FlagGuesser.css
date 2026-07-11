@@ -516,6 +516,14 @@
   min-width: 0;
 }
 
+.flag-leaderboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 18px;
+}
+
 .flag-leaderboard-title {
   display: flex;
   align-items: center;
@@ -523,8 +531,31 @@
   font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
   font-size: 1.1rem;
-  margin: 0 0 18px;
+  margin: 0;
   color: var(--accent-light);
+}
+
+.flag-leaderboard-reset-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid rgba(126, 162, 255, 0.25);
+  border-radius: 999px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.flag-leaderboard-reset-btn:hover {
+  color: var(--red);
+  border-color: var(--red);
+  background: var(--red-bg);
 }
 
 .flag-leaderboard-header-row {
