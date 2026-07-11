@@ -4,6 +4,8 @@ import LogoGuesser from "./pages/LogoGuesser";
 import FlagGuesser from "./pages/FlagGuesser";
 import ClubGuesser from "./pages/ClubGuesser";
 
+// This File is only used for Routing between the different pages of the app. It is not used for any other purpose.
+
 function App() {
   return (
     <BrowserRouter>
